@@ -22,8 +22,14 @@ typedef struct {
 // funciones
 
 int main() {
-
-
+    int cantClientes;
+    do {
+        cout << "\n>> Ingrese la cantidad de clientes: ";
+        cin >> cantClientes;
+        if (cantClientes < 0) {
+            cout << "!Error: Cantidad ingresada incorrecta";
+        }
+    } while (cantClientes < 0);
 
 
 
