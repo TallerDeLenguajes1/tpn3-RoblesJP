@@ -9,7 +9,7 @@ using namespace std;
 typedef struct {
     int id;
     int cant; // [1, 10]
-    const char* tipo; // algun valor del arreglo tiposProductos
+    char* tipo; // algun valor del arreglo tiposProductos
     int precioUnitario; // [10, 100]
 } PRODUCTO;
 
@@ -55,10 +55,10 @@ void cargaCliente(CLIENTE* cliente, int cantClientes, const char** tiposProducto
         // cliente
         (cliente + i)->id = i + 1;
 
-        cout << "Ingrese el nombre del cliente: ";
+        cout << "Ingrese el nombre del cliente #" << i + 1 << ": ";
         char nombre[30];
         cin >> nombre;
-        (cliente + i)->nombre = new char[strlen(nombre)];
+        (cliente + i)->nombre = new char[strlen(nombre) + 1];
         strcpy((cliente + i)->nombre, nombre);
 
         (cliente + i)->cantProductos = rand() % 5 + 1;
@@ -68,7 +68,9 @@ void cargaCliente(CLIENTE* cliente, int cantClientes, const char** tiposProducto
         for (int j = 0; j < (cliente + i)->cantProductos; j++) {
             ((cliente + i)->productos + j)->id = j + 1;
             ((cliente + i)->productos + j)->cant = rand() % 10 + 1;
-            ((cliente + i)->productos + j)->tipo = *(tiposProductos + rand() % 5);
+            const char* tipo = *(tiposProductos + rand() % 5);
+            ((cliente + i)->productos + j)->tipo = new char[strlen(tipo) + 1];
+            strcpy(((cliente + i)->productos + j)->tipo, tipo);
             ((cliente + i)->productos + j)->precioUnitario = rand() % 91 + 10;
         }
     }
