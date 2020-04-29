@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <iostream>
-using namespace std;
+using namespace std
 
 // estructuras
 typedef struct {
